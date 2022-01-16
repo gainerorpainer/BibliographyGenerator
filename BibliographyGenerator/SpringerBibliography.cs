@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,12 @@ namespace BibliographyGenerator
         }
 
         public string InternationalTag { get; }
+        public CultureInfo Culture { get; }
 
         public SpringerBibliography(International international, string internationalTag) : base(international)
         {
             InternationalTag = internationalTag;
+            Culture = CultureInfo.GetCultureInfo(internationalTag);
         }
 
         public override string Serialize(IEnumerable<Source_Xml> sources)
@@ -46,31 +49,36 @@ namespace BibliographyGenerator
             switch (entry)
             {
                 case Report_Xml report:
-                    sb.AppendLine($"{report.Title}. {report.Publisher}, {report.City}, ({report.Year})");
+                    sb.Append($"{report.Title}. {report.Publisher}, {report.City}, ({report.Year})");
                     break;
 
                 case Book_Xml book:
-                    sb.AppendLine($"{authors}: {book.Title}. {book.Publisher}, {book.City} ({book.Year}).");
+                    sb.Append($"{authors} ({book.Year}) {book.Title}. {book.Publisher}, {book.City}");
                     break;
 
                 case DocumentFromInternetSite_Xml webDoc:
                     string datestr = InternationalTag == "de" ?
-                        $"{webDoc.DayAccessed:00}.{DocumentFromInternetSite_Xml.MonthToNumber(webDoc.MonthAccessed):00}.{webDoc.YearAccessed}" :
-                        $"{webDoc.YearAccessed}/{DocumentFromInternetSite_Xml.MonthToNumber(webDoc.MonthAccessed)}/{webDoc.DayAccessed}";
-                    sb.AppendLine($"{webDoc.Title}, {webDoc.URL}, {International.LastAccessed} {datestr}.");
+                        $"{webDoc.DayAccessed:00}.{DocumentFromInternetSite_Xml.MonthToNumber(webDoc.MonthAccessed, Culture):00}.{webDoc.YearAccessed}" :
+                        $"{webDoc.DayAccessed} {webDoc.MonthAccessed} {webDoc.YearAccessed}";
+                    sb.Append($"{webDoc.Title}. {webDoc.URL}. {International.LastAccessed} {datestr}");
                     break;
 
                 case ArticleInAPeriodical_Xml article:
-                    sb.AppendLine($"{authors}: {article.Title}. {article.PeriodicalTitle}, {article.Pages} ({article.Year})");
+                    sb.Append($"{authors} ({article.Year}) {article.Title}. {article.PeriodicalTitle}:{article.Pages}");
                     break;
 
                 case ConferenceProceedings_Xml conferenceProceedings:
-                    sb.AppendLine($"{conferenceProceedings.Title}. {conferenceProceedings.ConferenceName}, {conferenceProceedings.City}, ({conferenceProceedings.Year})");
+                    sb.Append($"{authors} ({conferenceProceedings.Year}) {conferenceProceedings.Title}. {conferenceProceedings.ConferenceName}");
                     break;
 
                 default:
                     throw new NotImplementedException();
             }
+
+            if (!string.IsNullOrEmpty(entry.DOI))
+                sb.Append(". https://doi.org/" + entry.DOI);
+
+            sb.AppendLine();
         }
     }
 }

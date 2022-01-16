@@ -62,7 +62,7 @@ namespace BibliographyGenerator
 
         private static void ParseSources(string filePath, List<Source_Xml> sources)
         {
-            foreach (var xml in File.ReadAllLines(filePath, Encoding.Unicode))
+            foreach (var xml in File.ReadAllLines(filePath, Encoding.UTF8))
             {
                 // trim and substitute
                 var trimmedxml = xml.Trim('"').Replace("\"\"", "\"");

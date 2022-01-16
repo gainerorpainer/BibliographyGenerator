@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace BibliographyGenerator
         public string Guid { get; set; }
         public AuthorContainer Author { get; set; }
         public int RefOrder { get; set; }
+        public string DOI { get; set; }
     }
 
 
@@ -60,9 +62,9 @@ namespace BibliographyGenerator
 
         public string URL { get; set; }
 
-        static internal int MonthToNumber(string month)
+        static internal int MonthToNumber(string month, CultureInfo culture)
         {
-            var pseudoDate = DateTime.ParseExact(month, "MMMM", System.Globalization.CultureInfo.CurrentCulture);
+            var pseudoDate = DateTime.ParseExact(month, "MMMM", culture);
             return pseudoDate.Month;
             //switch (MonthAccessed)
             //{
@@ -95,6 +97,10 @@ namespace BibliographyGenerator
             //}
         }
     }
+
+    [XmlRoot(ElementName = "Source", Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/bibliography")]
+    public class InternetSite_Xml : DocumentFromInternetSite_Xml
+    { }
 
     [XmlRoot(ElementName = "Source", Namespace = "http://schemas.openxmlformats.org/officeDocument/2006/bibliography")]
     public class ArticleInAPeriodical_Xml : Source_Xml

@@ -32,6 +32,6 @@ namespace BibliographyGenerator
     [International("en")]
     internal class International_EN : International
     {
-        public override string LastAccessed => "last access";
+        public override string LastAccessed => "Accessed";
     }
 }
