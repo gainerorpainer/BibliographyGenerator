@@ -1,0 +1,67 @@
+﻿<Source>
+  <Tag>Bun11</Tag>
+  <SourceType>ArticleInAPeriodical</SourceType>
+  <Guid>{FF8A965D-5070-42FE-B775-3E62DB666755}</Guid>
+  <Title>AUTOSAR – the Standardized Software Architecture</Title>
+  <PeriodicalTitle>Informatik Spektrum 34</PeriodicalTitle>
+  <Year>2011</Year>
+  <Month>February</Month>
+  <Day>1</Day>
+  <Pages>79-83</Pages>
+  <Author>
+    <Author>
+      <NameList>
+        <Person>
+          <Last>Bunzel</Last>
+          <First>Stefan</First>
+        </Person>
+      </NameList>
+    </Author>
+  </Author>
+  <RefOrder>4</RefOrder>
+</Source>
+
+<Source xmlns:b="http://schemas.openxmlformats.org/officeDocument/2006/bibliography">
+  <Tag>Gra19</Tag>
+  <SourceType>Report</SourceType>
+  <Guid>{673234BB-693C-4820-BDD0-9AB72DDEF322}</Guid>
+  <Title>Automotive Electronic Control Unit Market Size, Share, &amp; Trends Analysis Report By Application, By Propulsion Type, By Capacity, By Vehicle Type, By Region, And Segment Forecasts, 2019 - 2025</Title>
+  <Year>2019</Year>
+  <Author>
+    <Author>
+      <Corporate>Grand View Research</Corporate>
+    </Author>
+  </Author>
+  <Publisher>Grad View Research</Publisher>
+  <City>San Francisco</City>
+  <RefOrder>1</RefOrder>
+</Source>
+
+<Source xmlns:b="http://schemas.openxmlformats.org/officeDocument/2006/bibliography">
+  <Tag>Zho20</Tag>
+  <SourceType>ConferenceProceedings</SourceType>
+  <Guid>{D39A3E66-0A23-4639-A35F-6B104656972F}</Guid>
+  <Title>A Study for Application Research of 5G Data Acquisition and Testing</Title>
+  <Year>2020</Year>
+  <ConferenceName>2020 5th IEEE International Conference on Big Data Analytics (ICBDA)</ConferenceName>
+  <City>Xiamen</City>
+  <Author>
+    <Author>
+      <NameList>
+        <Person>
+          <Last>Zhongmei</Last>
+          <First>L</First>
+        </Person>
+        <Person>
+          <Last>Yu-Che</Last>
+          <First>H</First>
+        </Person>
+        <Person>
+          <Last>Cui</Last>
+          <First>B</First>
+        </Person>
+      </NameList>
+    </Author>
+  </Author>
+  <RefOrder>10</RefOrder>
+</Source>
